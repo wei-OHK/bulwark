@@ -99,7 +99,7 @@ public:
 		/// Get and set shared data.
 		template<typename _Tp>
 		_Tp const& GetSharedData(std::size_t __index) const {
-			_M_actor->GetDataPool().Get<_Tp>(__index);
+			return _M_actor->GetDataPool().Get<_Tp>(__index);
 		}
 
 		template<typename _Tp>
