@@ -80,7 +80,6 @@ struct _Erase_Tag_Helper<0, _Locator, _Storage> {
 	void operator()(_Storage & __tag_storage, _Locator const& __locator) { }
 };
 
-
 /// A container which offers quick read-only access to elements by either key or tag.
 template<typename _Tp, typename _KeySet, typename _TagSet, template<typename...> class _Map_Container>
 class Container;

@@ -17,7 +17,6 @@
 #include "../dynamics/trigger.h"
 #include "monitor.h"
 
-
 namespace bul {
 namespace manager {
 /// A SceneMgr managers all objects, actors and triggers.
@@ -82,7 +81,7 @@ public:
 		_M_terminated = true;
 	}
 
-	/// Get nodes by id / type / tag.
+	/// Get node(s) by id / type / tag.
 	typename storage_type::value_type GetNodeById(std::size_t __id) {
 		return _M_node.GetByKey<0>(__id);
 	}
@@ -93,6 +92,19 @@ public:
 
 	typename storage_type::value_list_type const& GetNodesByTag(unsigned int __tag) {
 		return _M_node.GetByTag<1>(__tag);
+	}
+
+	/// Count node(s) by id / type / tag.
+	std::size_t CountNodeById(std::size_t __id) const {
+		return _M_node.CountKey<0>(__id);
+	}
+
+	std::size_t CountNodesByType(dynamics::Node_Type __type) const {
+		return _M_node.CountTag<0>(__type);
+	}
+
+	std::size_t CountNodesByTag(unsigned int __tag) const {
+		return _M_node.CountTag<1>(__tag);
 	}
 
 	/// Get max / current step.

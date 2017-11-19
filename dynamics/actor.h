@@ -162,6 +162,19 @@ public:
 		return _M_component.GetByTag<1>(__tag);
 	}
 
+	/// Count component(s) by id / priority / tag.
+	std::size_t CountComponentById(std::size_t __id) const {
+		return _M_component.CountKey<0>(__id);
+	}
+
+	std::size_t CountComponentsByPriority(std::size_t __priority) const {
+		return _M_component.CountTag<0>(__priority);
+	}
+
+	std::size_t CountComponentsByTag(unsigned int __tag) const {
+		return _M_component.CountTag<1>(__tag);
+	}
+
 	/// Get reference to the shared data pool.
 	datapool_type & GetDataPool() {
 		return _M_datapool;
@@ -199,14 +212,12 @@ protected:
 		}
 	}
 
-
 private:
 	friend class manager::SceneMgr;
 
 	datapool_type _M_datapool;
 	storage_type _M_component;
 };
-
 
 } /* namespace dynamics */
 } /* namespace bul */

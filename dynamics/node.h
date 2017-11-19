@@ -10,7 +10,7 @@ namespace manager {
 /// Forward-declaration.
 class SceneMgr;
 
-}
+} /* namespace manager */
 
 namespace dynamics {
 /// Node types.
