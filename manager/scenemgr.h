@@ -94,7 +94,7 @@ public:
 		return _M_node.GetByTag<1>(__tag);
 	}
 
-	/// Count node(s) by id / type / tag.
+	/// Count node(s) by id / type / tag / pointer.
 	std::size_t CountNodeById(std::size_t __id) const {
 		return _M_node.CountKey<0>(__id);
 	}
@@ -105,6 +105,10 @@ public:
 
 	std::size_t CountNodesByTag(unsigned int __tag) const {
 		return _M_node.CountTag<1>(__tag);
+	}
+
+	std::size_t CountNodeByPointer(dynamics::Node* __node) const {
+		return _M_node.CountValue(__node);
 	}
 
 	/// Get max / current step.

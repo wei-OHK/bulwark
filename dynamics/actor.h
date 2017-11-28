@@ -162,7 +162,7 @@ public:
 		return _M_component.GetByTag<1>(__tag);
 	}
 
-	/// Count component(s) by id / priority / tag.
+	/// Count component(s) by id / priority / tag / pointer.
 	std::size_t CountComponentById(std::size_t __id) const {
 		return _M_component.CountKey<0>(__id);
 	}
@@ -173,6 +173,10 @@ public:
 
 	std::size_t CountComponentsByTag(unsigned int __tag) const {
 		return _M_component.CountTag<1>(__tag);
+	}
+
+	std::size_t CountComponentByPointer(Component* __component) const {
+		return _M_component.CountValue(__component);
 	}
 
 	/// Get reference to the shared data pool.
