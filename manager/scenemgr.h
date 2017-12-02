@@ -34,6 +34,7 @@ public:
 	SceneMgr(Configuration* __conf) : _M_max_step(__conf->MaxStep) {
 		_M_current_step = 0;
 		_M_terminated = false;
+		_M_step_lock = false;
 	}
 	virtual ~SceneMgr() {
 		auto iter_end = _M_node.EndByKey<0>();
@@ -120,6 +121,14 @@ public:
 		return _M_current_step;
 	}
 
+	/// Set current step, carefully.
+	void SetCurrentStep(std::size_t __step) {
+		if(_M_step_lock) {
+			throw std::runtime_error("bul::manager::SceneMgr::SetCurrentStep(...) : can only be used in single step mode.");
+		}
+		_M_current_step = __step;
+	}
+
 	/// Is the simulation done?
 	bool IsTerminated() const {
 		return _M_terminated || _M_current_step >= _M_max_step;
@@ -164,6 +173,7 @@ protected:
 			monitor -> Initialize();
 		}
 
+		_M_step_lock = true;
 		while(!IsTerminated()) {
 			PreStep();
 			_M_Step();
@@ -173,6 +183,7 @@ protected:
 			}
 			_M_current_step++;
 		}
+		_M_step_lock = false;		
 
 		for(auto monitor : _M_monitor) {
 			monitor -> Finalize();
@@ -194,6 +205,7 @@ private:
 	std::size_t _M_current_step;
 
 	bool _M_terminated;
+	bool _M_step_lock;
 
 	storage_type _M_node;
 
