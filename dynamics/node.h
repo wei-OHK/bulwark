@@ -70,7 +70,7 @@ public:
 	}
 
 	void RemoveFlag(unsigned int __flag) {
-		_M_flag = _M_flag & (!__flag);
+		_M_flag = _M_flag & (~__flag);
 	}
 
 	bool CheckFlag(unsigned int __flag) const {
