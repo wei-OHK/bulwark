@@ -74,7 +74,7 @@ public:
 	}
 
 	bool CheckFlag(unsigned int __flag) const {
-		return _M_flag&__flag == __flag;
+		return (_M_flag&__flag) == __flag;
 	}
 
 	void* GetUserData() {
